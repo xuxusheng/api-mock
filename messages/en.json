@@ -1,0 +1,89 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save",
+    "loading": "Loading...",
+    "search": "Search",
+    "name": "Name",
+    "description": "Description",
+    "actions": "Actions",
+    "createdAt": "Created At",
+    "updatedAt": "Updated At",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "projects": "Projects",
+    "settings": "Settings"
+  },
+  "project": {
+    "title": "Projects",
+    "createProject": "Create Project",
+    "editProject": "Edit Project",
+    "deleteProject": "Delete Project",
+    "projectName": "Project Name",
+    "projectDescription": "Project Description",
+    "noProjects": "No projects yet",
+    "createFirst": "Create your first project to get started",
+    "createFirstProject": "Create your first project to get started",
+    "create": "Create",
+    "name": "Name",
+    "description": "Description",
+    "createDescription": "Create a new project to manage your API interfaces",
+    "editDescription": "Edit project information",
+    "nameRequired": "Project name is required",
+    "namePlaceholder": "Enter project name",
+    "descriptionPlaceholder": "Enter project description (optional)"
+  },
+  "api": {
+    "title": "APIs",
+    "createApi": "Create API",
+    "editApi": "Edit API",
+    "deleteApi": "Delete API",
+    "apiName": "API Name",
+    "apiDescription": "API Description",
+    "path": "Path",
+    "method": "Method",
+    "statusCode": "Status Code",
+    "mockData": "Mock Data",
+    "isActive": "Active",
+    "noApis": "No APIs yet",
+    "createFirstApi": "Create your first API to get started",
+    "name": "API Name",
+    "description": "API Description",
+    "create": "Create API",
+    "edit": "Edit API",
+    "createDescription": "Create a new API interface",
+    "editDescription": "Edit API information",
+    "nameRequired": "API name is required",
+    "namePlaceholder": "Enter API name",
+    "descriptionPlaceholder": "Enter API description (optional)",
+    "methodPlaceholder": "Select request method",
+    "pathRequired": "API path is required",
+    "pathInvalid": "API path must start with /",
+    "mockDataInvalid": "Mock data format is invalid, please enter valid JSON"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcome": "Welcome to API Mock Platform",
+    "subtitle": "Quickly create and manage API mock interfaces",
+    "totalProjects": "Total Projects",
+    "totalApis": "Total APIs",
+    "activeApis": "Active APIs",
+    "recentProjects": "Recent Projects"
+  },
+  "form": {
+    "saved": "Saved successfully",
+    "saving": "Saving..."
+  }
+}

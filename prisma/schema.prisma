@@ -15,16 +15,46 @@ datasource db {
     directUrl = env("DIRECT_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    createdBy   User   @relation(fields: [createdById], references: [id])
+model Project {
+    id          String    @id @default(cuid())
+    name        String
+    description String?
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
+    
+    createdBy   User      @relation(fields: [createdById], references: [id])
     createdById String
+    apis        Api[]
+    
+    @@index([createdById])
+}
 
-    @@index([name])
+model Api {
+    id          String     @id @default(cuid())
+    name        String
+    description String?
+    path        String
+    method      HttpMethod @default(GET)
+    config      Json?      // 请求配置
+    mockData    Json?      // 模拟数据
+    statusCode  Int        @default(200)
+    isActive    Boolean    @default(true)
+    createdAt   DateTime   @default(now())
+    updatedAt   DateTime   @updatedAt
+    
+    project     Project    @relation(fields: [projectId], references: [id])
+    projectId   String
+    
+    @@index([projectId])
+    @@index([path, method])
+}
+
+enum HttpMethod {
+    GET
+    POST
+    PUT
+    DELETE
+    PATCH
 }
 
 // Necessary for Next auth
@@ -63,7 +93,7 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    posts         Post[]
+    projects      Project[]
 }
 
 model VerificationToken {

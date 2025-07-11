@@ -1,0 +1,92 @@
+{
+  "common": {
+    "cancel": "取消",
+    "confirm": "确认",
+    "create": "创建",
+    "edit": "编辑",
+    "delete": "删除",
+    "save": "保存",
+    "loading": "加载中...",
+    "search": "搜索",
+    "name": "名称",
+    "description": "描述",
+    "actions": "操作",
+    "createdAt": "创建时间",
+    "updatedAt": "更新时间",
+    "login": "登录",
+    "logout": "退出登录"
+  },
+  "theme": {
+    "light": "浅色",
+    "dark": "深色",
+    "system": "系统"
+  },
+  "nav": {
+    "dashboard": "工作台",
+    "projects": "项目",
+    "settings": "设置"
+  },
+  "project": {
+    "title": "项目",
+    "createProject": "创建项目",
+    "editProject": "编辑项目",
+    "deleteProject": "删除项目",
+    "projectName": "项目名称",
+    "projectDescription": "项目描述",
+    "noProjects": "暂无项目",
+    "createFirst": "创建您的第一个项目开始使用",
+    "createFirstProject": "创建您的第一个项目开始使用",
+    "create": "创建",
+    "name": "名称",
+    "description": "描述",
+    "createDescription": "创建一个新的项目来管理你的 API 接口",
+    "editDescription": "编辑项目信息",
+    "nameRequired": "项目名称为必填项",
+    "namePlaceholder": "输入项目名称",
+    "descriptionPlaceholder": "输入项目描述（可选）",
+    "edit": "编辑项目",
+    "delete": "删除项目",
+    "deleteConfirm": "确定要删除这个项目吗？此操作不可撤销，项目下的所有接口也会被删除。"
+  },
+  "api": {
+    "title": "接口",
+    "createApi": "创建接口",
+    "editApi": "编辑接口",
+    "deleteApi": "删除接口",
+    "apiName": "接口名称",
+    "apiDescription": "接口描述",
+    "path": "路径",
+    "method": "方法",
+    "statusCode": "状态码",
+    "mockData": "模拟数据",
+    "isActive": "启用",
+    "noApis": "暂无接口",
+    "createFirstApi": "创建您的第一个接口开始使用",
+    "name": "接口名称",
+    "description": "接口描述",
+    "create": "创建接口",
+    "edit": "编辑接口",
+    "createDescription": "创建一个新的 API 接口",
+    "editDescription": "编辑接口信息",
+    "nameRequired": "接口名称为必填项",
+    "namePlaceholder": "输入接口名称",
+    "descriptionPlaceholder": "输入接口描述（可选）",
+    "methodPlaceholder": "选择请求方法",
+    "pathRequired": "接口路径为必填项",
+    "pathInvalid": "接口路径必须以 / 开头",
+    "mockDataInvalid": "模拟数据格式不正确，请输入有效的 JSON"
+  },
+  "dashboard": {
+    "title": "工作台",
+    "welcome": "欢迎使用 API Mock 平台",
+    "subtitle": "快速创建和管理 API 模拟接口",
+    "totalProjects": "项目总数",
+    "totalApis": "接口总数",
+    "activeApis": "活跃接口",
+    "recentProjects": "最近项目"
+  },
+  "form": {
+    "saved": "保存成功",
+    "saving": "保存中..."
+  }
+}
