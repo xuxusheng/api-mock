@@ -145,7 +145,7 @@ export function ApiForm({ projectId, apiId, initialData, onSuccess }: ApiFormPro
     }
   }
 
-  const isLoading = createApi.isLoading || updateApi.isLoading
+  const isLoading = createApi.isPending || updateApi.isPending
   const isEdit = !!apiId
 
   return (

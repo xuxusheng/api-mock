@@ -8,10 +8,11 @@ import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
 export default async function ProjectDetailPage({
-  params: { projectId, locale }
+  params
 }: {
-  params: { projectId: string; locale: string }
+  params: Promise<{ projectId: string; locale: string }>
 }) {
+  const { projectId, locale } = await params;
   const session = await auth();
 
   if (!session) {

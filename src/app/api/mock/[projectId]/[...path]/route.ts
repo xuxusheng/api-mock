@@ -3,37 +3,42 @@ import { db } from "@/server/db";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { projectId: string; path: string[] } }
+  { params }: { params: Promise<{ projectId: string; path: string[] }> }
 ) {
-  return handleApiRequest(request, params, "GET");
+  const resolvedParams = await params;
+  return handleApiRequest(request, resolvedParams, "GET");
 }
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: { projectId: string; path: string[] } }
+  { params }: { params: Promise<{ projectId: string; path: string[] }> }
 ) {
-  return handleApiRequest(request, params, "POST");
+  const resolvedParams = await params;
+  return handleApiRequest(request, resolvedParams, "POST");
 }
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { projectId: string; path: string[] } }
+  { params }: { params: Promise<{ projectId: string; path: string[] }> }
 ) {
-  return handleApiRequest(request, params, "PUT");
+  const resolvedParams = await params;
+  return handleApiRequest(request, resolvedParams, "PUT");
 }
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { projectId: string; path: string[] } }
+  { params }: { params: Promise<{ projectId: string; path: string[] }> }
 ) {
-  return handleApiRequest(request, params, "DELETE");
+  const resolvedParams = await params;
+  return handleApiRequest(request, resolvedParams, "DELETE");
 }
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { projectId: string; path: string[] } }
+  { params }: { params: Promise<{ projectId: string; path: string[] }> }
 ) {
-  return handleApiRequest(request, params, "PATCH");
+  const resolvedParams = await params;
+  return handleApiRequest(request, resolvedParams, "PATCH");
 }
 
 async function handleApiRequest(

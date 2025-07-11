@@ -24,6 +24,7 @@ interface ProjectFormProps {
   initialData?: {
     name: string
     description?: string
+    baseUrl?: string
   }
   onSuccess?: () => void
 }
@@ -33,6 +34,7 @@ export function ProjectForm({ projectId, initialData, onSuccess }: ProjectFormPr
   const [open, setOpen] = useState(false)
   const [name, setName] = useState(initialData?.name || "")
   const [description, setDescription] = useState(initialData?.description || "")
+  const [baseUrl, setBaseUrl] = useState(initialData?.baseUrl || "")
   
   const utils = api.useUtils()
   
@@ -66,6 +68,7 @@ export function ProjectForm({ projectId, initialData, onSuccess }: ProjectFormPr
   const resetForm = () => {
     setName("")
     setDescription("")
+    setBaseUrl("")
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -79,6 +82,7 @@ export function ProjectForm({ projectId, initialData, onSuccess }: ProjectFormPr
     const data = {
       name: name.trim(),
       description: description.trim() || undefined,
+      baseUrl: baseUrl.trim() || undefined,
     }
 
     if (projectId) {
@@ -88,7 +92,7 @@ export function ProjectForm({ projectId, initialData, onSuccess }: ProjectFormPr
     }
   }
 
-  const isLoading = createProject.isLoading || updateProject.isLoading
+  const isLoading = createProject.isPending || updateProject.isPending
   const isEdit = !!projectId
 
   return (
@@ -139,6 +143,16 @@ export function ProjectForm({ projectId, initialData, onSuccess }: ProjectFormPr
                 onChange={(e) => setDescription(e.target.value)}
                 placeholder={t("project.descriptionPlaceholder")}
                 rows={3}
+              />
+            </div>
+            
+            <div className="grid gap-2">
+              <Label htmlFor="baseUrl">Base URL</Label>
+              <Input
+                id="baseUrl"
+                value={baseUrl}
+                onChange={(e) => setBaseUrl(e.target.value)}
+                placeholder="https://api.example.com"
               />
             </div>
           </div>
