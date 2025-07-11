@@ -32,16 +32,16 @@ interface ProjectFormProps {
 export function ProjectForm({ projectId, initialData, onSuccess }: ProjectFormProps) {
   const t = useTranslations()
   const [open, setOpen] = useState(false)
-  const [name, setName] = useState(initialData?.name || "")
-  const [description, setDescription] = useState(initialData?.description || "")
-  const [baseUrl, setBaseUrl] = useState(initialData?.baseUrl || "")
+  const [name, setName] = useState(initialData?.name ?? "")
+  const [description, setDescription] = useState(initialData?.description ?? "")
+  const [baseUrl, setBaseUrl] = useState(initialData?.baseUrl ?? "")
   
   const utils = api.useUtils()
   
   const createProject = api.project.create.useMutation({
     onSuccess: () => {
-      utils.project.getAll.invalidate()
-      utils.project.getStats.invalidate()
+      void utils.project.getAll.invalidate()
+      void utils.project.getStats.invalidate()
       setOpen(false)
       resetForm()
       onSuccess?.()
@@ -54,8 +54,8 @@ export function ProjectForm({ projectId, initialData, onSuccess }: ProjectFormPr
 
   const updateProject = api.project.update.useMutation({
     onSuccess: () => {
-      utils.project.getAll.invalidate()
-      utils.project.getById.invalidate({ id: projectId! })
+      void utils.project.getAll.invalidate()
+      void utils.project.getById.invalidate({ id: projectId! })
       setOpen(false)
       onSuccess?.()
       toast.success(t("form.saved"))

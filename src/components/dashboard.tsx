@@ -1,7 +1,7 @@
 "use client"
 
 import { useTranslations } from "next-intl"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ProjectForm } from "@/components/project-form"
 import { ProjectList } from "@/components/project-list"
 import { api } from "@/trpc/react"
@@ -21,7 +21,7 @@ export function DashboardStats() {
           <Folder className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats?.totalProjects || 0}</div>
+          <div className="text-2xl font-bold">{stats?.totalProjects ?? 0}</div>
         </CardContent>
       </Card>
       
@@ -33,7 +33,7 @@ export function DashboardStats() {
           <FileCode className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats?.totalApis || 0}</div>
+          <div className="text-2xl font-bold">{stats?.totalApis ?? 0}</div>
         </CardContent>
       </Card>
       
@@ -45,7 +45,7 @@ export function DashboardStats() {
           <Activity className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">{stats?.activeApis || 0}</div>
+          <div className="text-2xl font-bold">{stats?.activeApis ?? 0}</div>
         </CardContent>
       </Card>
     </div>

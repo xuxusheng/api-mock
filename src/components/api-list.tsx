@@ -27,11 +27,9 @@ import { ApiForm } from "@/components/api-form"
 import { 
   MoreHorizontal, 
   Trash2, 
-  Edit, 
   Copy, 
   Play, 
-  Pause,
-  ExternalLink 
+  Pause
 } from "lucide-react"
 import { toast } from "sonner"
 
@@ -51,8 +49,8 @@ export function ApiList({ projectId }: ApiListProps) {
   
   const deleteApi = api.api.delete.useMutation({
     onSuccess: () => {
-      utils.api.getByProject.invalidate({ projectId })
-      utils.project.getById.invalidate({ id: projectId })
+      void utils.api.getByProject.invalidate({ projectId })
+      void utils.project.getById.invalidate({ id: projectId })
       setDeletingId(null)
       toast.success("接口已删除")
     },
@@ -64,8 +62,8 @@ export function ApiList({ projectId }: ApiListProps) {
 
   const toggleActive = api.api.toggleActive.useMutation({
     onSuccess: () => {
-      utils.api.getByProject.invalidate({ projectId })
-      utils.project.getById.invalidate({ id: projectId })
+      void utils.api.getByProject.invalidate({ projectId })
+      void utils.project.getById.invalidate({ id: projectId })
       toast.success("状态已更新")
     },
     onError: (error) => {
@@ -82,9 +80,9 @@ export function ApiList({ projectId }: ApiListProps) {
     toggleActive.mutate({ id })
   }
 
-  const copyApiUrl = (api: any) => {
+  const copyApiUrl = (api: { path: string }) => {
     const url = `${window.location.origin}/api/mock/${projectId}${api.path}`
-    navigator.clipboard.writeText(url)
+    void navigator.clipboard.writeText(url)
     toast.success(t("common.copied"))
   }
 
@@ -146,7 +144,7 @@ export function ApiList({ projectId }: ApiListProps) {
                 </div>
                 <CardTitle className="text-lg">{api.name}</CardTitle>
                 <CardDescription className="mt-1">
-                  {api.description || "暂无描述"}
+                  {api.description ?? "暂无描述"}
                 </CardDescription>
               </div>
               <DropdownMenu>
@@ -179,11 +177,11 @@ export function ApiList({ projectId }: ApiListProps) {
                       apiId={api.id}
                       initialData={{
                         name: api.name,
-                        description: api.description || "",
+                        description: api.description ?? "",
                         path: api.path,
                         method: api.method,
                         statusCode: api.statusCode,
-                        mockData: api.mockData,
+                        mockData: api.mockData as Record<string, unknown> | undefined,
                         isActive: api.isActive,
                       }}
                     />

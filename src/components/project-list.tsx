@@ -24,7 +24,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { api } from "@/trpc/react"
 import { ProjectForm } from "@/components/project-form"
-import { MoreHorizontal, Trash2, Edit, ExternalLink } from "lucide-react"
+import { MoreHorizontal, Trash2, ExternalLink } from "lucide-react"
 import { formatDistanceToNow } from "date-fns"
 import { zhCN, enUS } from "date-fns/locale"
 import { useLocale } from "next-intl"
@@ -41,8 +41,8 @@ export function ProjectList() {
   
   const deleteProject = api.project.delete.useMutation({
     onSuccess: () => {
-      utils.project.getAll.invalidate()
-      utils.project.getStats.invalidate()
+      void utils.project.getAll.invalidate()
+      void utils.project.getStats.invalidate()
       setDeletingId(null)
       toast.success("项目已删除")
     },
@@ -100,7 +100,7 @@ export function ProjectList() {
               <div className="flex-1">
                 <CardTitle className="text-lg">{project.name}</CardTitle>
                 <CardDescription className="mt-1">
-                  {project.description || "暂无描述"}
+                  {project.description ?? "暂无描述"}
                 </CardDescription>
               </div>
               <DropdownMenu>
@@ -121,8 +121,7 @@ export function ProjectList() {
                       projectId={project.id}
                       initialData={{
                         name: project.name,
-                        description: project.description || "",
-                        baseUrl: project.baseUrl || "",
+                        description: project.description ?? "",
                       }}
                     />
                   </DropdownMenuItem>
@@ -164,12 +163,6 @@ export function ProjectList() {
                   {project._count.apis} 个接口
                 </Badge>
               </div>
-              {project.baseUrl && (
-                <div className="truncate">
-                  <span className="text-xs">Base URL: </span>
-                  <code className="text-xs">{project.baseUrl}</code>
-                </div>
-              )}
             </div>
           </CardContent>
           

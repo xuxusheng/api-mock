@@ -2,14 +2,12 @@
 
 import { Badge } from "@/components/ui/badge"
 import { api } from "@/trpc/react"
-import { useTranslations } from "next-intl"
 
 interface ProjectHeaderProps {
   projectId: string
 }
 
 export function ProjectHeader({ projectId }: ProjectHeaderProps) {
-  const t = useTranslations()
   const { data: project, isLoading } = api.project.getById.useQuery({
     id: projectId,
   })
@@ -36,7 +34,7 @@ export function ProjectHeader({ projectId }: ProjectHeaderProps) {
       <div className="flex-1">
         <h1 className="text-3xl font-bold tracking-tight">{project.name}</h1>
         <p className="text-muted-foreground">
-          {project.description || "暂无描述"}
+          {project.description ?? "暂无描述"}
         </p>
       </div>
       <Badge variant="secondary">

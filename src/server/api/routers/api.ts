@@ -100,7 +100,9 @@ export const apiRouter = createTRPCRouter({
           description: input.description,
           path: input.path,
           method: input.method,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           config: input.config,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           mockData: input.mockData,
           statusCode: input.statusCode,
           isActive: input.isActive,
@@ -162,7 +164,9 @@ export const apiRouter = createTRPCRouter({
           description: input.description,
           path: input.path,
           method: input.method,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           config: input.config,
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           mockData: input.mockData,
           statusCode: input.statusCode,
           isActive: input.isActive,

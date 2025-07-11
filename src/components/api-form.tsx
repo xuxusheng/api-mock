@@ -35,7 +35,7 @@ interface ApiFormProps {
     path: string
     method: string
     statusCode: number
-    mockData?: any
+    mockData?: Record<string, unknown>
     isActive: boolean
   }
   onSuccess?: () => void
@@ -52,11 +52,11 @@ const HTTP_METHODS = [
 export function ApiForm({ projectId, apiId, initialData, onSuccess }: ApiFormProps) {
   const t = useTranslations()
   const [open, setOpen] = useState(false)
-  const [name, setName] = useState(initialData?.name || "")
-  const [description, setDescription] = useState(initialData?.description || "")
-  const [path, setPath] = useState(initialData?.path || "/")
-  const [method, setMethod] = useState(initialData?.method || "GET")
-  const [statusCode, setStatusCode] = useState(initialData?.statusCode || 200)
+  const [name, setName] = useState(initialData?.name ?? "")
+  const [description, setDescription] = useState(initialData?.description ?? "")
+  const [path, setPath] = useState(initialData?.path ?? "/")
+  const [method, setMethod] = useState(initialData?.method ?? "GET")
+  const [statusCode, setStatusCode] = useState(initialData?.statusCode ?? 200)
   const [mockData, setMockData] = useState(
     initialData?.mockData ? JSON.stringify(initialData.mockData, null, 2) : "{}"
   )
@@ -66,8 +66,8 @@ export function ApiForm({ projectId, apiId, initialData, onSuccess }: ApiFormPro
   
   const createApi = api.api.create.useMutation({
     onSuccess: () => {
-      utils.api.getByProject.invalidate({ projectId })
-      utils.project.getById.invalidate({ id: projectId })
+      void utils.api.getByProject.invalidate({ projectId })
+      void utils.project.getById.invalidate({ id: projectId })
       setOpen(false)
       resetForm()
       onSuccess?.()
@@ -80,8 +80,8 @@ export function ApiForm({ projectId, apiId, initialData, onSuccess }: ApiFormPro
 
   const updateApi = api.api.update.useMutation({
     onSuccess: () => {
-      utils.api.getByProject.invalidate({ projectId })
-      utils.api.getById.invalidate({ id: apiId! })
+      void utils.api.getByProject.invalidate({ projectId })
+      void utils.api.getById.invalidate({ id: apiId! })
       setOpen(false)
       onSuccess?.()
       toast.success(t("form.saved"))
@@ -120,10 +120,10 @@ export function ApiForm({ projectId, apiId, initialData, onSuccess }: ApiFormPro
     }
 
     // Validate JSON
-    let parsedMockData
+    let parsedMockData: Record<string, unknown>
     try {
-      parsedMockData = JSON.parse(mockData)
-    } catch (error) {
+      parsedMockData = JSON.parse(mockData) as Record<string, unknown>
+    } catch {
       toast.error(t("api.mockDataInvalid"))
       return
     }

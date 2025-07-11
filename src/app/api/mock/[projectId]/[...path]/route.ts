@@ -1,4 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { db } from "@/server/db";
 
 export async function GET(
@@ -55,7 +56,7 @@ async function handleApiRequest(
       where: {
         projectId: projectId,
         path: apiPath,
-        method: method as any,
+        method: method as "GET" | "POST" | "PUT" | "DELETE" | "PATCH",
         isActive: true,
       },
       include: {
@@ -80,7 +81,7 @@ async function handleApiRequest(
 
     // 返回模拟数据
     return NextResponse.json(
-      api.mockData || { message: "Hello from API Mock" },
+      api.mockData ?? { message: "Hello from API Mock" },
       {
         status: api.statusCode,
         headers,

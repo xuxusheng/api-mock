@@ -2,7 +2,6 @@ import { redirect } from "next/navigation";
 import { auth } from "@/server/auth";
 import { ProjectList } from "@/components/project-list";
 import { ProjectForm } from "@/components/project-form";
-import { useTranslations } from "next-intl";
 
 export default async function ProjectsPage() {
   const session = await auth();
