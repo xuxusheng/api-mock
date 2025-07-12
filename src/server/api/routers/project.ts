@@ -41,14 +41,12 @@ export const projectRouter = createTRPCRouter({
     .input(z.object({
       name: z.string().min(1),
       description: z.string().optional(),
-      baseUrl: z.string().optional(),
     }))
     .mutation(({ ctx, input }) => {
       return ctx.db.project.create({
         data: {
           name: input.name,
           description: input.description,
-          baseUrl: input.baseUrl,
           createdById: ctx.session.user.id,
         },
       });
@@ -59,7 +57,6 @@ export const projectRouter = createTRPCRouter({
       id: z.string(),
       name: z.string().min(1),
       description: z.string().optional(),
-      baseUrl: z.string().optional(),
     }))
     .mutation(({ ctx, input }) => {
       return ctx.db.project.update({
@@ -70,7 +67,6 @@ export const projectRouter = createTRPCRouter({
         data: {
           name: input.name,
           description: input.description,
-          baseUrl: input.baseUrl,
         },
       });
     }),
